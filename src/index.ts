@@ -19,17 +19,6 @@ interface Column {
   type: string;
 }
 
-interface LinkedItem {
-  id: string;
-  name: string;
-}
-
-interface ColumnValue {
-  id: string;
-  type: string;
-  value?: string;
-  linked_items?: LinkedItem[];
-}
 
 interface BoardsResponse {
   data: {
@@ -108,7 +97,6 @@ class MondayClient {
     return response.data.boards[0]?.items_page?.items || [];
   }
 
-  // Helper: Get board columns to find connect_boards columns
   async getColumns(boardId: string): Promise<Column[]> {
     const graphql = `
       query {
